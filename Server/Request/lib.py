@@ -3,6 +3,8 @@ import string
 import shutil
 import os
 import requests
+from .models import Key
+from django.db.models import ObjectDoesNotExist
 
 
 def strRand():  # 生成20位随机字符串
@@ -11,8 +13,11 @@ def strRand():  # 生成20位随机字符串
 
 
 def key2fileName(key):  # 将key转化为fileName
-    fileName = key
-    return fileName
+    try:
+        filename = Key.objects.get(key=key, is_print=False).filename
+    except ObjectDoesNotExist:
+        filename = None
+    return filename
 
 
 def getFile(key):  # 获得某个文件的临时拷贝，并移动至usr/downloads目录下
