@@ -26,7 +26,7 @@ def submit(requests):  # 用户发起打印请求
     return HttpResponse(404)
 
 
-def download(requests, filename):  # 下载文件的请求
+def download(requests, filename):  # Printer 端发起下载文件的请求
     sep = os.path.sep
     path = 'usr%sdownloads%s%s' % (sep, sep, filename)
     file = open(path, 'rb')

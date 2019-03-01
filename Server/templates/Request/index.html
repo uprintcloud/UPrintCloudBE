@@ -8,7 +8,11 @@
 <form action="{% url 'requestSubmit' %}" method="post">
     {% csrf_token %}
     <input name="url" type="hidden" value="{{ url }}">
-    <div><input name="key" type="text" title="key"></div>
+    <div>
+        <label>
+            <input name="key" type="text" title="key">
+        </label>
+    </div>
     <button type="submit">Submit</button>
 </form>
 </body>
