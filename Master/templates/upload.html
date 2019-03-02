@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-    <form method="post" enctype="multipart/form-data" action="{% url 'upload.submit' %}">
+    <form method="post" enctype="multipart/form-data" action="{% url 'api.upload' %}">
         {% csrf_token %}
         <div><input type="file" name="file"/></div>
         <button type="submit">Upload</button>

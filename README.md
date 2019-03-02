@@ -14,9 +14,14 @@ pika
 
 ```python
 /admin
-/upload -> [/api/submit] -> /upload
-/api/print -> rabbitmq -> client
+/upload -> [/api/upload] -> /upload
+/api/request?job_id=&client_id= -> rabbitmq -> client
 ```
+
+# RabbitMQ
+
+master
+admin
 
 # Client
 
