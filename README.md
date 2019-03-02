@@ -14,7 +14,7 @@ pika
 
 ```python
 /admin
-/upload -> [/api/upload] -> /upload
+/upload -> [/api/submit] -> /upload
 /api/print -> rabbitmq -> client
 ```
 

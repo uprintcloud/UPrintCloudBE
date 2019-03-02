@@ -7,14 +7,12 @@ def submit(requests):
         file = requests.FILES.get('file', None)
         if not file:
             return HttpResponse('Empty file')
-
         job = Jobs(
             jobId='123',
             account='123',
             file_name=file.name,
             file=file,
         )
-
         job.save()
 
     return HttpResponse('Success!')
