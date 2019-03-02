@@ -1,18 +1,38 @@
 # UPrintCloud
 
-云打印
+Cloud Printer
 
-## Server
-
-服务端
+# Requirements
 
 ```python
-/admin  # 管理界面
-/upload  # 文件上传
-/request/download/f
-/request/submit  # 用户发起打印请求
+Python ≥ 3.6
+asyncio
+pika
 ```
 
-## Printer
+# Master
 
-打印端
+```python
+/admin
+/upload -> [/api/upload] -> /upload
+/api/print -> rabbitmq -> client
+```
+
+# Client
+
+```python
+query
+print
+```
+
+# Server
+
+```python
+/admin
+/upload  # File upload
+/request/download/<file_name>
+/request/submit  # User request for print job
+```
+
+# Printer
+
