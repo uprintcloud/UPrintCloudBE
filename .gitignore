@@ -1,4 +1,5 @@
 .*
+Data/migrations/*
 
 # user upload
 static/usr/uploads
