@@ -6,7 +6,7 @@ You Cloud Printer
 
 ```python
 Python ≥ 3.6
-asyncio
+django
 pika
 filetype
 ```
