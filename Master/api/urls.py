@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('upload', views.upload, name='api.upload'),
     path('request', views.request, name='api.request'),
+    path('download', views.download, name='api.download'),
 ]

@@ -1,6 +1,6 @@
-# UPrintCloud
+# UPrintCloudB
 
-Cloud Printer
+You Cloud Printer
 
 # Requirements
 
@@ -8,14 +8,16 @@ Cloud Printer
 Python ≥ 3.6
 asyncio
 pika
+filetype
 ```
 
 # Master
 
-```python
+```
 /admin
-/upload -> [/api/upload] -> /upload
-/api/request?job_id=&client_id= -> rabbitmq -> client
+/upload
+/api/upload
+/api/request?job_id=&client_id=
 ```
 
 # RabbitMQ
@@ -24,11 +26,6 @@ master
 admin
 
 # Client
-
-```python
-query
-print
-```
 
 # Server
 

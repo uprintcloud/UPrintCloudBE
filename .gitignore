@@ -1,7 +1,7 @@
 .*
 
 # user upload
-Master/usr
+Master/static/usr/uploads
 
 # pycharm
 .idea
