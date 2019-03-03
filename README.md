@@ -1,4 +1,4 @@
-# UPrintCloudB
+# UPrintCloudBE
 
 You Cloud Printer
 
@@ -11,7 +11,8 @@ pika
 filetype
 ```
 
-# Master
+# API
+
 
 ```
 /admin
@@ -19,22 +20,4 @@ filetype
 /api/upload
 /api/request?job_id=&client_id=
 ```
-
-# RabbitMQ
-
-master
-admin
-
-# Client
-
-# Server
-
-```python
-/admin
-/upload  # File upload
-/request/download/<file_name>
-/request/submit  # User request for print job
-```
-
-# Printer
 
