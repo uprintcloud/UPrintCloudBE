@@ -20,8 +20,8 @@ def upload(requests):
             return HttpResponse('Wrong type')
 
         username = requests.POST['username']
-        user = data.User.objects.get(username=username)
         date = time.strftime("%Y%m%d%H%M%S", time.localtime())
+        user = data.User.objects.get(username=username)
         user.file_count = user.file_count + 1
         user.save(update_fields=['file_count'])
         job = data.Job(
