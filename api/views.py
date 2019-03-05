@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, Http404
+from django.shortcuts import HttpResponse, Http404
 from django.http import FileResponse
 from django.utils.http import urlquote
 from Data import models as data

@@ -1,9 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-class User(models.Model):
-    username = models.CharField(verbose_name='用户名', max_length=10, primary_key=True)
-    password = models.CharField(verbose_name='密码', max_length=32)
+class User(AbstractUser):
     nickname = models.CharField(verbose_name='用户昵称', max_length=32)
     file_count = models.IntegerField(verbose_name='文件数量', default=0)
 
@@ -36,9 +35,9 @@ class Job(models.Model):
     id = models.CharField(verbose_name='任务编号', max_length=30, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='所属用户')
     file = models.FileField(verbose_name='文件', upload_to='static/usr/uploads/files/%Y/%m/%d/')
-    create_date = models.CharField(verbose_name='创建日期', max_length=19)
+    create_date = models.DateTimeField(verbose_name='创建日期', auto_now_add=True)
     finished = models.BooleanField(verbose_name='已经打印', default=False)
-    finished_date = models.CharField(verbose_name='打印日期', max_length=19, null=True)
+    finished_date = models.DateTimeField(verbose_name='打印日期', auto_now=True)
     client = models.ForeignKey(Client, on_delete=models.PROTECT, verbose_name='打印终端', null=True)
 
     class Meta:
