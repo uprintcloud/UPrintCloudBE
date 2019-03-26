@@ -5,7 +5,6 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from . import models
 
-# admin.site.register(models.User, UserAdmin)
 admin.site.register(models.RabbitMQNode)
 admin.site.register(models.Client)
 admin.site.register(models.Job)
@@ -64,8 +63,8 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'nickname', 'is_admin')
-    list_filter = ('is_admin',)
+    list_display = ('username', 'email', 'nickname', 'file_count')
+    list_filter = ()
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('nickname',)}),
@@ -79,8 +78,8 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('email', 'nickname', 'password1', 'password2')}
         ),
     )
-    search_fields = ('email',)
-    ordering = ('email',)
+    search_fields = ('email', 'username',)
+    ordering = ('username', 'file_count')
     filter_horizontal = ()
 
 
