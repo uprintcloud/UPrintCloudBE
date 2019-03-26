@@ -1,5 +1,13 @@
+from random import choice
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+
+
+def uuid_generator():
+    uuid_list = [choice('123456789')]
+    for i in range(9):
+        uuid_list.append(choice('0123456789'))
+    return int(''.join(uuid_list))
 
 
 class UserManager(BaseUserManager):
@@ -16,6 +24,14 @@ class UserManager(BaseUserManager):
             nickname=nickname,
         )
 
+        uuid = uuid_generator()
+        while True:
+            try:
+                User.objects.get(username=uuid)
+            except models.ObjectDoesNotExist:
+                break
+
+        user.username = uuid
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -41,8 +57,10 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
+    username = models.IntegerField(verbose_name='用户名', primary_key=True, editable=False, unique=True)
     nickname = models.CharField(verbose_name='用户昵称', max_length=32)
     is_active = models.BooleanField(verbose_name='用户可用', default=True)
+    file_count = models.IntegerField(verbose_name='文件数量', default=0)
     is_admin = models.BooleanField(verbose_name='管理员用户', default=False)
 
     objects = UserManager()
