@@ -1,6 +1,6 @@
 # UPrintCloudBE
 
-Your Cloud Printer
+A open source version of Do La, but more efficient maybe.
 
 # Requirements
 
@@ -13,20 +13,20 @@ filetype
 
 # API
 
-```
-/admin
-/upload
-/api/upload
-/api/request?job_id=&client_id=
-```
+| url | Function |
+| --- | --- |
+| /admin | administration |
+| /upload | file uploading temporary frontend |
+| /api/upload | params username, file with POST method is required, only *.pdf will be accepted |
+| /api/request?job_id=&client_id= | send a print job to client |
 
-# Testing
+# Testing Deployment
 
 ```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser
+bash reset.sh
 ```
+
+Then access `127.0.0.1:8000/init` in browser is required
 
 ## Web root
 

@@ -36,10 +36,10 @@ def upload(requests):
 
 
 def request(requests):
-    if requests.method == 'POST':
-        if 'job_id' in requests.POST:
-            job = data.Job.objects.get(id=requests.POST['job_id'])
-            client = data.Client.objects.get(id=requests.POST['client_id'])
+    if requests.method == 'GET':
+        if 'job_id' in requests.GET:
+            job = data.Job.objects.get(id=requests.GET['job_id'])
+            client = data.Client.objects.get(id=requests.GET['client_id'])
             if job.finished:
                 raise Http404
 
@@ -47,7 +47,7 @@ def request(requests):
                 uri=client.rabbitmq_node.url,
                 username=client.rabbitmq_node.username,
                 passwd=client.rabbitmq_node.password,
-                content=requests.POST['job_id'],
+                content=requests.GET['job_id'],
                 queue_name=client.id
             )
             job.client = client
