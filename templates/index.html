@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>username: {{ user.username }}</p>
+        <p>email: {{ user.email }}</p>
+        <p>nickname: {{ user.nickname }}</p>
+    {% else %}
+        Guest
+    {% endif %}
+</body>
+</html>

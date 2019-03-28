@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+<body>
+    <form action="{% url 'api.login' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <label>
+                username:
+                <input name="username" type="text" value="mail@mail.com" />
+            </label>
+        </div>
+        <div>
+            <label>
+                password:
+                <input name="password" type="password" value="123456" />
+            </label>
+        </div>
+        <button type="submit">登陆</button>
+        <a href="{% url 'join' %}">注册</a>
+    </form>
+</body>
+</html>

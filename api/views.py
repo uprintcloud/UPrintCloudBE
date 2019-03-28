@@ -1,9 +1,11 @@
 from django.shortcuts import HttpResponse, Http404
 from django.http import FileResponse
 from django.utils.http import urlquote
+from django.contrib import auth
 from Data import models as data
 from util import rabbitmq
-import time, filetype
+import time
+import filetype
 
 
 def upload(requests):
@@ -28,7 +30,7 @@ def upload(requests):
             id=date + username,
             user=user,
             file=file,
-            create_date= time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            create_date=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         )
         job.save()
         return HttpResponse(date + username)
@@ -71,3 +73,32 @@ def download(requests):
 
     raise Http404
 
+
+def login(requests):
+    username = requests.POST['username']
+    password = requests.POST['password']
+    if '@' not in username:
+        try:
+            user = data.User.objects.get(username=username)
+        except data.models.ObjectDoesNotExist:
+            return HttpResponse('fail')
+        else:
+            username = user.email
+    user = auth.authenticate(requests, email=username, password=password)
+    if user is not None:
+        auth.login(requests, user)
+        return HttpResponse(user.username)
+    return HttpResponse('fail')
+
+
+def join(requests):
+    email = requests.POST['email']
+    nickname = requests.POST['nickname']
+    password = requests.POST['password']
+    try:
+        data.User.objects.get(email=email)
+    except data.models.ObjectDoesNotExist:
+        user = data.User.objects.create_user(email=email, nickname=nickname, password=password)
+        user.save()
+        return HttpResponse('success')
+    return HttpResponse('duplicated')
