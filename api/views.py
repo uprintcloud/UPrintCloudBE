@@ -30,7 +30,7 @@ def upload(requests):
             id=date + username,
             user=user,
             file=file,
-            create_date= time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            create_date=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         )
         job.save()
         return HttpResponse(date + username)
@@ -77,6 +77,13 @@ def download(requests):
 def login(requests):
     username = requests.POST['username']
     password = requests.POST['password']
+    if '@' not in username:
+        try:
+            user = data.User.objects.get(username=username)
+        except data.models.ObjectDoesNotExist:
+            return HttpResponse('fail')
+        else:
+            username = user.email
     user = auth.authenticate(requests, email=username, password=password)
     if user is not None:
         auth.login(requests, user)

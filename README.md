@@ -17,8 +17,12 @@ filetype
 | --- | --- |
 | /admin | administration |
 | /upload | file uploading temporary frontend |
-| /api/upload | params username, file with POST method is required, only *.pdf will be accepted |
-| /api/request?job_id=&client_id= | send a print job to client |
+| /login | user sign in |
+| /join | user sign up |
+| /api/upload | **username, file**, only *.pdf will be accepted |
+| /api/request?**job_id=&client_id=** | send a print job to client |
+| /api/login | **email or username, password** |
+| /api/join | **email, nickname, password** |
 
 # Testing Deployment
 
