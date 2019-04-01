@@ -2,6 +2,7 @@ from django.shortcuts import HttpResponse, Http404
 from django.http import FileResponse
 from django.utils.http import urlquote
 from django.contrib import auth
+from django.utils import timezone
 from Data import models as data
 from util import rabbitmq
 import time
@@ -22,7 +23,7 @@ def upload(requests):
             return HttpResponse('Wrong type')
 
         username = requests.POST['username']
-        date = time.strftime("%Y%m%d%H%M%S", time.localtime())
+        date = time.strftime("%Y%m%d%H%M%S", timezone.now())
         user = data.User.objects.get(username=username)
         user.file_count = user.file_count + 1
         user.save(update_fields=['file_count'])
@@ -30,9 +31,9 @@ def upload(requests):
             id=date + username,
             user=user,
             file=file,
-            create_date=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         )
         job.save()
+
         return HttpResponse(date + username)
     raise Http404
 
@@ -89,6 +90,10 @@ def login(requests):
         auth.login(requests, user)
         return HttpResponse(user.username)
     return HttpResponse('fail')
+
+
+def logout(requests):
+    auth.logout(requests)
 
 
 def join(requests):
