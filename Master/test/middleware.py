@@ -8,6 +8,7 @@ class LoginFilter(MiddlewareMixin):
         '/join',
         '/api/login',
         '/api/join',
+        '/init'
     ]
 
     def process_request(self, requests):
