@@ -6,14 +6,13 @@
 </head>
 <body>
 <div>
+    <p>username: {{ user.email }}</p>
+    <p>nickname: {{ user.nickname }}</p>
     <form method="post" enctype="multipart/form-data" action="{% url 'api.upload' %}">
         {% csrf_token %}
-        <div>
-            <label>
-                <a>用户名：</a>
-                <input type="text" name="username" value="1607020115">
-            </label>
-        </div>
+        <label>
+            <input type="text" name="username" value="{{ user.username }}" hidden>
+        </label>
         <div><input type="file" name="file"/></div>
         <button type="submit">上传</button>
     </form>

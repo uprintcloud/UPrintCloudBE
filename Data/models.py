@@ -3,13 +3,6 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
-def uuid_generator():
-    uuid_list = [choice('123456789')]
-    for i in range(9):
-        uuid_list.append(choice('0123456789'))
-    return int(''.join(uuid_list))
-
-
 class UserManager(BaseUserManager):
     def create_user(self, email, nickname, password=None):
         """
@@ -24,9 +17,16 @@ class UserManager(BaseUserManager):
             nickname=nickname,
         )
 
-        uuid = uuid_generator()
+        def uuid_generator():
+            uuid_list = [choice('123456789')]
+            for i in range(9):
+                uuid_list.append(choice('0123456789'))
+            return int(''.join(uuid_list))
+
+        global uuid
         while True:
             try:
+                uuid = uuid_generator()
                 User.objects.get(username=uuid)
             except models.ObjectDoesNotExist:
                 break
