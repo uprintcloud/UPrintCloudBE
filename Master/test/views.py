@@ -6,10 +6,14 @@ def init(requests):
     user = models.User(username='1607020115', email='mail@mail.com', nickname='Lucien Shui')
     user.set_password('123456')
     user.save()
-    node = models.RabbitMQNode(url='debian-docker', username='master', password='admin')
+    node = models.RabbitMQNode(url='debian-docker', username='guest', password='guest')
     node.save()
     models.Client(id='01234567890', user=user, rabbitmq_node=node).save()
     return HttpResponse('Success')
+
+
+def printer(requests):
+    return render(requests, 'print.html')
 
 
 def upload(requests):
