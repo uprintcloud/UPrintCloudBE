@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打印测试</title>
+</head>
+<body>
+    <form action="{% url 'api.request' %}" method="get">
+        <div>
+            <label>
+                任务编号：
+                <input name="job_id">
+            </label>
+        </div>
+        <div>
+            <label>
+                终端编号：
+                <input name="client_id">
+            </label>
+        </div>
+        <button type="submit">Print</button>
+    </form>
+</body>
+</html>

@@ -19,6 +19,7 @@ filetype
 | /upload | file uploading temporary frontend |
 | /login | user sign in |
 | /join | user sign up |
+| /print | print a job |
 | /api/upload | **username, file**, only *.pdf will be accepted |
 | /api/request?**job_id=&client_id=** | send a print job to client |
 | /api/login | **email or username, password** |

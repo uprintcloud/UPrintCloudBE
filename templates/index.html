@@ -6,11 +6,15 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        <p>username: {{ user.username }}</p>
-        <p>email: {{ user.email }}</p>
-        <p>nickname: {{ user.nickname }}</p>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Nickname: {{ user.nickname }}</p>
     {% else %}
         Guest
     {% endif %}
+    <ul>
+        <li><a href="{% url 'upload' %}">上传测试</a></li>
+        <li><a href="{% url 'print' %}">请求打印测试</a></li>
+    </ul>
 </body>
 </html>
